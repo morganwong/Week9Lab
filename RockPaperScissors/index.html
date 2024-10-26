@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Week 9 Lab</title>
+
+    <style>
+    </style>
+</head>
+<body style="text-align: center; margin-top: 150px">
+
+    <div>
+
+        <h1>Pick one and let's play!</h1>
+
+        <button>Rock</button>
+
+        <button>Paper</button>
+
+        <button>Scissors</button>
+
+        <h2 id="result"></h2>
+
+        <h2 id="playedThreeTimes" style="margin-top: 100px"></h2>
+
+    </div>
+
+    <script type="text/javascript">
+        const buttons = document.getElementsByTagName("button");
+        for(let i = 0; i < buttons.length; i++){
+            buttons[i].onclick = function(){
+                play(this.innerHTML);
+            }
+        }
+
+        let playCount = 0;
+
+        function play(playerPicks){
+            let computerPicks;
+            switch(Math.floor(Math.random() * 3)){
+                case 0:
+                    computerPicks = "Rock";
+                    break;
+                case 1:
+                    computerPicks = "Paper";
+                    break;
+                case 2:
+                    computerPicks = "Scissors";
+                    break;
+                default:
+                    return alert("ERROR");
+            }
+
+            let result = computerPicks === playerPicks ? "DRAW" : "";
+
+            if(playerPicks === "Rock"){
+                if(computerPicks === "Scissors"){
+                    result = "WIN";
+                }else if(computerPicks === "Paper"){
+                    result = "LOSE"
+                }
+            }else if(playerPicks === "Paper"){
+                if(computerPicks === "Rock"){
+                    result = "WIN";
+                }else if(computerPicks === "Scissors"){
+                    result = "LOSE"
+                }
+            }else if(playerPicks === "Scissors"){
+                if(computerPicks === "Paper"){
+                    result = "WIN";
+                }else if(computerPicks === "Rock"){
+                    result = "LOSE"
+                }
+            }
+
+            document.getElementById("result").innerHTML =
+                "Player picked "
+                + playerPicks
+                + "<br>Computer picked "
+                + computerPicks
+                + "<br>Result : "
+                + result;
+
+            if(result === "WIN"){
+                document.getElementById("playedThreeTimes").innerHTML = "You've won, so no more playing for you! Refresh to start again...";
+                for(const b of buttons){
+                    b.disabled = true;
+                }
+            }
+
+            playCount++;
+            if(playCount === 3){
+                document.getElementById("playedThreeTimes").innerHTML = "You've played three times! Refresh to start again...";
+                for(const b of buttons){
+                    b.disabled = true;
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

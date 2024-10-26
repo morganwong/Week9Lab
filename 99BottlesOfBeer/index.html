@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Week 9 Lab</title>
+
+    <style>
+    </style>
+</head>
+<body style="text-align: center; margin-top: 150px">
+
+    <div id="lyrics">
+    </div>
+
+    <script type="text/javascript">
+
+        let text = "";
+        for(let i = 99; i >= 0; i--){
+            if(i === 1){
+                text += "1 bottle of beer on the wall, 1 bottle of beer<br>" +
+                    "Take one down and pass it around, no more bottles of beer on the wall<br><br>";
+            }else if(i === 0){
+                text += "No more bottles of beer on the wall, no more bottles of beer<br>" +
+                    "Go to the store and buy some more, 99 bottles of beer on the wall";
+            }else{
+                text += i + " bottles of beer on the wall, " + i + " bottles of beer<br>"
+                    + "Take one down and pass it around, "
+                    + (i - 1) + " bottle" + ((i - 1) === 1 ? "" : "s") + " of beer on the wall<br><br>";
+            }
+        }
+
+        document.getElementById("lyrics").innerHTML = text;
+    </script>
+
+</body>
+</html>
